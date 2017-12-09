@@ -2,7 +2,7 @@ import React, { Fragment } from 'react'
 
 const Home = () => (
   <Fragment>
-    <div>HOME</div>
+    <h1>Home</h1>
     <button onClick={() => console.log('clicked...')}>Click Me</button>
   </Fragment>
 )

@@ -1,5 +1,5 @@
 const options = {
-  // (1) Transpile all .js and .jsx files (But not those in node_modules folder)
+  // (1) Transpile all .js and .jsx files (But not those in the node_modules folder)
   module: {
     rules: [{
       test: /\.jsx?$/,
@@ -8,7 +8,7 @@ const options = {
     }]
   },
 
-  // (2) Recognise the following suffixes as files eligible for transpilation
+  // (2) Use the following suffixes to identify files for transpilation
   resolve: {
     extensions: ['.js', '.jsx']
   }
