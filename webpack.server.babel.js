@@ -1,4 +1,5 @@
 import common from './webpack.common.babel'
+import webpackNodeExternals from 'webpack-node-externals'
 
 const options = {
   // (1) Inform WebPack we want to build a bundle for the Node environment
@@ -13,6 +14,9 @@ const options = {
   },
 
   // (4) Spread common properties
-  ...common
+  ...common,
+
+  // (5) Do NOT include node_modules in bundle
+  externals: [webpackNodeExternals()]
 }
 export default options
