@@ -6,7 +6,7 @@ const options = {
   target: "node",
 
   // (2) Tell WebPack what the root of your server application is
-  entry: './source/index.js',
+  entry: './source/server/server.js',
 
   // (3) Tell WebPack where the generated output file should go
   output: {
