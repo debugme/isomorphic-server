@@ -1,13 +1,13 @@
 const configuration = {
-  // (1) Inform WebPack we want to build a bundle for the Node environment
-  target: "node",
+  // (1) Inform WebPack we want to build a bundle for the Browser environment
+  target: "web",
 
-  // (2) Tell WebPack what the root of your server application is
-  entry: './source/index.js',
+  // (2) Tell WebPack what the root of your browser application is
+  entry: './source/client/client.js',
 
   // (3) Tell WebPack where the generated output file should go
   output: {
-    filename: './build/server.bundle.js'
+    filename: './public/client.bundle.js'
   },
 
   // (4) Transpile all .js and .jsx files (But not those in node_modules folder)

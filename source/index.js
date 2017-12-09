@@ -5,9 +5,20 @@ import Home from './client/components/Home'
 
 const server = express()
 
+server.use(express.static('public'))
+
 server.get('/', (request, response) => {
   const content = renderToString(<Home />)
-  response.send(content)
+  const template = `
+    <html>
+      <head></head>
+      <body>
+        <div id="root">${content}</div>
+        <script src='client.bundle.js'></script>
+      </body>
+    </html>
+  `
+  response.send(template)
 })
 
 const { env: { IP = 'http://localhost', PORT = 3000 } } = process

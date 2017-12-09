@@ -1,5 +1,10 @@
-import React from 'react'
+import React, { Fragment } from 'react'
 
-const Home = () => <div>HOME</div>
+const Home = () => (
+  <Fragment>
+    <div>HOME</div>
+    <button onClick={() => console.log('clicked...')}>Click Me</button>
+  </Fragment>
+)
 
 export default Home
