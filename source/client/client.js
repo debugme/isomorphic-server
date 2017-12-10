@@ -1,9 +1,14 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
-import Home from './components/Home'
+import Routes from './Routes'
+import { BrowserRouter } from 'react-router-dom'
 
-// Create the Home component
-const element = <Home />
+// Create the Routes component
+const element = (
+  <BrowserRouter>
+    <Routes />
+  </BrowserRouter>
+)
 
 // Find the DOM node the component needs to be rendered within
 const domNode = document.querySelector('#root')

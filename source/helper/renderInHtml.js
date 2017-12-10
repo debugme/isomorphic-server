@@ -1,14 +1,14 @@
 import React from 'react'
 import { renderToString } from 'react-dom/server'
 
-const renderInHtml = (Tag) => {
-  const content = renderToString(<Tag />)
+const renderInHtml = (code) => {
+  const content = renderToString(code)
   const template = `
     <html>
       <head></head>
       <body>
         <div id="root">${content}</div>
-        <script src='client.bundle.js'></script>
+        <script src="client.bundle.js"></script>
       </body>
     </html>
   `
