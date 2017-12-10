@@ -2,22 +2,29 @@ import express from 'express'
 import React from 'react'
 import { renderToString } from 'react-dom/server'
 import { StaticRouter } from 'react-router-dom'
+import { Provider } from 'react-redux'
+
 import renderInHtml from '../helper/renderInHtml'
+import buildStore from '../helper/buildStore'
 import Routes from '../client/Routes'
-import Home from '../client/components/Home'
 
 const server = express()
 
 server.use(express.static('public'))
 
-server.get('/', (request, response) => {
+server.get('*', (request, response) => {
   const { path: location } = request
+
+  const store = buildStore()
   const context = {}
   const code = (
-    <StaticRouter { ...{ location, context } }>
-      <Routes />
-    </StaticRouter>
+    <Provider store={store}>
+      <StaticRouter { ...{ location, context } }>
+        <Routes />
+      </StaticRouter>
+    </Provider>
   )
+
   const html = renderInHtml(code)
   response.send(html)
 })
