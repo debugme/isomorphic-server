@@ -5,9 +5,14 @@
   "main": "index.js",
   "scripts": {
     "clean:assets": "rm -rf node_modules build public && npm install",
-    "build:client": "webpack --config ./webpack.client.babel.js --watch",
-    "build:server": "webpack --config ./webpack.server.babel.js --watch",
-    "start:server": "nodemon --watch build --exec \" node build/server.bundle.js \""
+    "build:client": "webpack --config ./webpack.client.babel.js",
+    "build:server": "webpack --config ./webpack.server.babel.js",
+    "start:server": "nodemon --watch build --exec \" node build/server.bundle.js \"",
+    "watch:client": "webpack --config ./webpack.client.babel.js --watch",
+    "watch:server": "webpack --config ./webpack.server.babel.js --watch",
+    "all": "npm-run-all -s clean:* -p build:* -s start:*",
+    "now": "npm-run-all -p build:* -s start:*",
+    "see": "npm-run-all -p watch:*"
   },
   "license": "GNU GPL 3.0",
   "bugs": {
@@ -27,6 +32,7 @@
     "babel-preset-env": "1.6.1",
     "babel-preset-react": "6.24.1",
     "nodemon": "1.12.5",
+    "npm-run-all": "4.1.2",
     "webpack": "3.10.0",
     "webpack-node-externals": "1.6.0"
   }
