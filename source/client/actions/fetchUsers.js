@@ -1,3 +1,5 @@
+import fetch from 'isomorphic-fetch'
+
 const FETCH_USERS = 'fetch_users'
 
 const fetchUsers = () => {

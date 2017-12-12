@@ -2,6 +2,7 @@ import 'babel-polyfill'
 import React from 'react'
 import ReactDOM from 'react-dom'
 import Routes from './Routes'
+import { renderRoutes } from 'react-router-config'
 import { BrowserRouter } from 'react-router-dom'
 import { createStore, applyMiddleware } from 'redux'
 import thunk from 'redux-thunk'
@@ -17,7 +18,7 @@ const store = createStore(reducers, state, middleware)
 const element = (
   <Provider store={store}>
     <BrowserRouter>
-      <Routes />
+      {renderRoutes(Routes)}
     </BrowserRouter>
   </Provider>
 )
