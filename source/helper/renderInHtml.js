@@ -1,8 +1,9 @@
 import React from 'react'
 import { renderToString } from 'react-dom/server'
+import serialize from 'serialize-javascript'
 
 const renderInHtml = (code, store) => {
-  const initialState = JSON.stringify(store.getState())
+  const initialState = serialize(store.getState())
   const content = renderToString(code)
   const template = `
     <html>

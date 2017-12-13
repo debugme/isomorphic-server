@@ -1,5 +1,6 @@
 import 'babel-polyfill'
 import express from 'express'
+import proxy from 'express-http-proxy'
 import React, { Component } from 'react'
 import { renderToString } from 'react-dom/server'
 import { StaticRouter } from 'react-router-dom'
@@ -10,7 +11,20 @@ import renderInHtml from '../helper/renderInHtml'
 import buildStore from '../helper/buildStore'
 import Routes from '../client/Routes'
 
+const { env: { IP = 'http://localhost', PORT = 3000 } } = process
+
 const server = express()
+
+// Proxy all routes on the /api path to the remote API server
+const path = '/api'
+const endpoint = 'http://react-ssr-api.herokuapp.com'
+const options = {
+  proxyReqOptDecorator(opts) {
+    opts.header['x-forwarded-host'] = `${IP}:${PORT}`
+    return opts
+  }
+}
+server.use(path, proxy(endpoint, options))
 
 // Make the contents of the public folder available
 server.use(express.static('public'))
@@ -46,6 +60,5 @@ server.get('*', async (request, response, next) => {
   response.send(html)
 })
 
-const { env: { IP = 'http://localhost', PORT = 3000 } } = process
 const callback = () => console.log(`listening on ${IP}:${PORT}`)
 server.listen(PORT, callback)
