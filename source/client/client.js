@@ -9,7 +9,7 @@ import thunk from 'redux-thunk'
 import { Provider } from 'react-redux'
 import reducers from '../client/reducers/rootReducer'
 
-// Create the client-side store
+// Create the client-side store using state provided from the server store
 const middleware = applyMiddleware(thunk)
 const store = createStore(reducers, window.INITIAL_STATE, middleware)
 
