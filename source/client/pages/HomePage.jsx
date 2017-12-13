@@ -1,10 +1,12 @@
 import React, { Fragment } from 'react'
 
-const Home = () => (
+const HomePage = () => (
   <Fragment>
     <h1>Home</h1>
     <button onClick={() => console.log('clicked...')}>Click Me</button>
   </Fragment>
 )
 
-export default Home
+export default {
+  component: HomePage
+}

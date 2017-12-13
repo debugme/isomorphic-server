@@ -10,9 +10,8 @@ import { Provider } from 'react-redux'
 import reducers from '../client/reducers/rootReducer'
 
 // Create the client-side store
-const state = {}
 const middleware = applyMiddleware(thunk)
-const store = createStore(reducers, state, middleware)
+const store = createStore(reducers, window.INITIAL_STATE, middleware)
 
 // Create the Routes component
 const element = (

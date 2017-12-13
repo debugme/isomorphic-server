@@ -2,7 +2,7 @@ import React, { Component, Fragment } from 'react'
 import { connect } from 'react-redux'
 import { fetchUsers } from '../actions/fetchUsers'
 
-class UsersList extends Component {
+class UserPage extends Component {
   componentDidMount = () => {
     this.props.fetchUsers()
   }
@@ -18,14 +18,16 @@ class UsersList extends Component {
   }
 }
 
-const mapStateToProps = (state) => (
-  {
+const mapStateToProps = (state) => ({
     users: state.users
   }
 )
 
 const loadData = (store) => store.dispatch(fetchUsers())
 
-export { loadData }
+const component = connect(mapStateToProps, { fetchUsers })(UserPage)
 
-export default connect(mapStateToProps, { fetchUsers })(UsersList)
+export default {
+  component,
+  loadData
+}

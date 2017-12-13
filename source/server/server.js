@@ -14,7 +14,7 @@ const server = express()
 
 server.use(express.static('public'))
 
-server.get('*', (request, response) => {
+server.get('*', (request, response, next) => {
   const { path: location } = request
   const matchList = matchRoutes(Routes, request.path)
   const store = buildStore()
@@ -31,7 +31,7 @@ server.get('*', (request, response) => {
         </StaticRouter>
       </Provider>
     )
-    const html = renderInHtml(code)
+    const html = renderInHtml(code, store)
     response.send(html)
   })
 })
