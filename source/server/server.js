@@ -11,8 +11,10 @@ import renderInHtml from '../helper/renderInHtml'
 import buildStore from '../helper/buildStore'
 import Routes from '../client/Routes'
 
+// Pull of variables from process environment
 const { env: { IP = 'http://localhost', PORT = 3000 } } = process
 
+// Create a new http server
 const server = express()
 
 // Proxy all routes on the /api path to the remote API server
@@ -60,5 +62,6 @@ server.get('*', async (request, response, next) => {
   response.send(html)
 })
 
+// Start the http server up on the provided host and port
 const callback = () => console.log(`listening on ${IP}:${PORT}`)
 server.listen(PORT, callback)

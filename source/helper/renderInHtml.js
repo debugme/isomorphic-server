@@ -3,8 +3,13 @@ import { renderToString } from 'react-dom/server'
 import serialize from 'serialize-javascript'
 
 const renderInHtml = (code, store) => {
+  // Pull out state in a way which guards against XSS (CrossSiteScripting) attacks
   const initialState = serialize(store.getState())
+
+  // Generate dynamic content to render inside the html template
   const content = renderToString(code)
+
+  // Put dynamic content into html template
   const template = `
     <html>
       <head>
@@ -17,6 +22,7 @@ const renderInHtml = (code, store) => {
       </body>
     </html>
   `
+  // Return composed template back to the caller
   return template
 }
 
